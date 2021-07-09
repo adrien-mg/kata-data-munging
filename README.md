@@ -6,7 +6,7 @@ This is a kata for data munging.
 
 * `python3`
 * `pip3`
-* `gnu make` (optional)
+* `gnu make`
 
 ## Usage
 
