@@ -1,0 +1,5 @@
+.sentinel*
+.venv/
+.ipynb_checkpoints/
+football.*
+weather.*
