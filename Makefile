@@ -17,7 +17,7 @@ FOOTBALL_DAT = football.dat
 WEATHER_CLEAN = weather.clean
 FOOTBALL_CLEAN = football.clean
 
-.PHONY : help clean clean-hard venv jupyter prepare-data install
+.PHONY : help clean clean-hard venv download-data prepare-data jupyter install
 
 ## help         : provides help
 help : Makefile
