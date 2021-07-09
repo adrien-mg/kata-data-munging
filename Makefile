@@ -19,11 +19,11 @@ FOOTBALL_CLEAN = football.clean
 
 .PHONY : help clean clean-hard venv jupyter prepare-data install
 
-## help        : provides help
+## help         : provides help
 help : Makefile
 	@sed -n 's/^##//p' $<
 
-## clean       : removes sentinel files
+## clean        : removes sentinel files
 clean:
 	rm -f .sentinel*
 	rm -f $(WEATHER_DAT)
@@ -31,23 +31,26 @@ clean:
 	rm -f $(FOOTBALL_DAT)
 	rm -f $(FOOTBALL_CLEAN)
 
-## clean-hard  : removes sentinel files and venv
+## clean-hard   : removes sentinel files and venv
 clean-hard: clean
 	rm -rf $(VENV)
 
-## venv        : installs virtual environment
+## venv         : installs virtual environment
 venv: .sentinel.venv
 
-## jupyter     : launch jupyter notebook
-jupyter: venv
-	@$(VENV)/bin/jupyter-notebook
+## download-data: downloads data
+download-data: $(FOOTBALL_DAT) $(WEATHER_DAT)
 
-## prepare-data: prepare all data
-prepare-data: $(FOOTBALL_DAT) $(WEATHER_DAT)
+## prepare-data : prepares data
+prepare-data: download-data
 	@./prepare-data.sh $(FOOTBALL_DAT) > $(FOOTBALL_CLEAN)
 	./prepare-data.sh $(WEATHER_DAT) > $(WEATHER_CLEAN)
 
-## install     : sets up virtual environment, downloads raw data, and fire jupyter notebook
+## jupyter      : launch jupyter notebook
+jupyter: venv
+	@$(VENV)/bin/jupyter-notebook
+
+## install      : sets up virtual environment, downloads raw data, and fire jupyter notebook
 install: venv prepare-data jupyter
 
 # private targets
